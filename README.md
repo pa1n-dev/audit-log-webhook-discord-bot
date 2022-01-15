@@ -1,5 +1,5 @@
 # 🔥 Audit log webhook discord bot
-Supported logs:
+**Supported logs:**
 * messageDelete
 * messageUpdate
 * channelCreate
