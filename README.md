@@ -7,6 +7,10 @@
 
 **3.** Create webhook and put in code
 
+**4.** Start bot
+
+**4.** Have fun :3
+
 **Type of log being tracked:**
 * Message deleted
 * Message edited
