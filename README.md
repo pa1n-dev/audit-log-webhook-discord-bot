@@ -7,9 +7,7 @@
 
 **3.** Create webhook and put in code
 
-**4.** Start bot
-
-**5.** Have fun :3
+**4.** Start bot & Have fun :3
 
 **Type of log being tracked:**
 * Message deleted
@@ -45,3 +43,5 @@
 **1.** You need to get nodejs v16 ([Video](https://www.youtube.com/watch?v=yaJfr_CEk-A))
 
 **2.** Put this script in index.js
+
+**3.** Start bot & Have fun :3
