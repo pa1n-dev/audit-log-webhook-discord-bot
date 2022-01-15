@@ -1,15 +1,24 @@
 # 🔥 Audit log webhook discord bot
-**Supported logs:**
-* messageDelete
-* messageUpdate
-* channelCreate
-* roleCreate
-* roleDelete
-* guildMemberAdd
-* guildMemberRemove
-* guildBanAdd
-* guildBanRemove
-* voiceStateUpdate
+**Setup:**
+**1.** Create discord bot and put token in '''const token = "bot token";'''
+
+**Type of log being tracked:**
+* Message deleted
+* Message edited
+* Member join the server
+* Member leave the server
+* Member banned
+* Member unbanned
+* Member has joined the voice channel
+* Member has leaved the voice channel
+* Member has moved the voice channel
+* Member has muted
+* Member has deafed
+* Member has unmuted
+* Member has undeafed
+* Channel created
+* Role created
+* Role deleted
 
 **Some examples logs:**
 <p align="center">
@@ -24,6 +33,6 @@
 ## 💻 Replit
 **Installation**
 
-**1.** You need to get nodejs v16 ([Video guide](https://www.youtube.com/watch?v=yaJfr_CEk-A))
+**1.** You need to get nodejs v16 ([Video](https://www.youtube.com/watch?v=yaJfr_CEk-A))
 
 **2.** Put this script in index.js
