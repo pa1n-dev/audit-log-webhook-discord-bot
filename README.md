@@ -15,6 +15,5 @@
 **Some examples logs:**
   <img src="https://github.com/retardpa1n/audit-log-webhook-discord-bot/blob/main/assets/connected.png?raw=true"/>
   <img src="https://github.com/retardpa1n/audit-log-webhook-discord-bot/blob/main/assets/disconnected.png?raw=true"/>
-  <img src="https://github.com/retardpa1n/audit-log-webhook-discord-bot/blob/main/assets/moved.png?raw=true"/>
 
 # 💻 Replit 24/7
