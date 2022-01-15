@@ -9,7 +9,7 @@
 
 **4.** Start bot
 
-**4.** Have fun :3
+**5.** Have fun :3
 
 **Type of log being tracked:**
 * Message deleted
