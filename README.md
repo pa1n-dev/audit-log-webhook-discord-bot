@@ -21,3 +21,6 @@
 
 
 ## 💻 Replit
+**Installation**
+**1.** You need to get nodejs v16 (https://www.youtube.com/watch?v=yaJfr_CEk-A)
+**2.** Put this script in index.js
