@@ -2,9 +2,7 @@
 **Setup:**
 
 **1.** Install nodejs v16 and discord.js
-
 **2.** Create discord bot and put token in ```const token = "bot token";```
-
 **3.** Create webhook and put in code
 
 **Type of log being tracked:**
