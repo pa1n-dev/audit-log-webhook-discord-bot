@@ -1,4 +1,3 @@
-const keepAlive = require('./util/keep_alive');
 const Discord = require('discord.js');
 const client = new Discord.Client({ intents: ["GUILDS", "GUILD_MEMBERS", "GUILD_BANS", "GUILD_VOICE_STATES", "GUILD_PRESENCES", "GUILD_MESSAGES", "DIRECT_MESSAGES"] })
 
