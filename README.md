@@ -1,4 +1,4 @@
-# 🔥 Audit log webhook discord bot
+# 🔥 Audit log bot
 **Setup:**
 
 **1.** Install nodejs v16 and discord.js
