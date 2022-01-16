@@ -1,13 +1,7 @@
 # 🔥 Audit log bot
-**Setup:**
-
-**1.** Install nodejs v16 and discord.js
-
-**2.** Create discord bot and put token in ```const token = "put here";```
-
-**3.** Create webhook and put in code
-
-**4.** Start bot & Have fun :3
+**Description:**
+This is a discord bot written in node js & discord.js
+The bot tracks user actions and sends data via webhook
 
 **Type of log being tracked:**
 * Message deleted
