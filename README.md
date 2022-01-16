@@ -1,6 +1,8 @@
 # 🔥 Audit log bot
 **Description:**
+
 This is a discord bot written in node js & discord.js
+
 The bot tracks user actions and sends data via webhook
 
 **Type of log being tracked:**
