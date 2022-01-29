@@ -19,9 +19,11 @@ The bot tracks user actions and sends data via webhook
 * Member has deafed
 * Member has unmuted
 * Member has undeafed
+* Member nickname change
 * Channel created
 * Role created
 * Role deleted
+* Role updated
 
 **Some examples logs:**
 <p align="center">
