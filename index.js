@@ -175,6 +175,8 @@ client.on('voiceStateUpdate', (oldState, newState) => {
 
     if (oldChannelName === null) {
         let embed = new Discord.MessageEmbed()
+            .setAuthor({name: oldState.member.user.username + "#" +  oldState.member.user.discriminator,
+                        iconURL:  oldState.member.user.displayAvatarURL()})
             .setDescription(`${oldState.member.user} connected to voice and joined ${newChannel}`)
             .setTimestamp();
 
@@ -182,6 +184,8 @@ client.on('voiceStateUpdate', (oldState, newState) => {
     }
     else if (newChannelName === null) {
         let embed = new Discord.MessageEmbed()
+            .setAuthor({name: oldState.member.user.username + "#" +  oldState.member.user.discriminator,
+                        iconURL:  oldState.member.user.displayAvatarURL()})
             .setDescription(`${oldState.member.user} disconnected`)
             .setTimestamp();
 
@@ -190,6 +194,8 @@ client.on('voiceStateUpdate', (oldState, newState) => {
     else {
         if (newState.channelId != oldState.channelId) {
             let embed = new Discord.MessageEmbed()
+                .setAuthor({name: oldState.member.user.username + "#" +  oldState.member.user.discriminator,
+                        iconURL:  oldState.member.user.displayAvatarURL()})
                 .setDescription(`❌ ${oldState.member.user} moved to channel ${newChannel}`)
                 .setTimestamp();
 
@@ -200,6 +206,8 @@ client.on('voiceStateUpdate', (oldState, newState) => {
         if (oldState.serverMute != newState.serverMute) {
             if (newState.serverMute == true) {
                 let embed = new Discord.MessageEmbed()
+                    .setAuthor({name: oldState.member.user.username + "#" +  oldState.member.user.discriminator,
+                        iconURL:  oldState.member.user.displayAvatarURL()})
                     .setDescription(`❌ ${oldState.member.user} muted in channel ${newChannel}`)
                     .setTimestamp();
 
@@ -208,6 +216,8 @@ client.on('voiceStateUpdate', (oldState, newState) => {
 
             if (newState.serverMute == false) {
                 let embed = new Discord.MessageEmbed()
+                    .setAuthor({name: oldState.member.user.username + "#" +  oldState.member.user.discriminator,
+                        iconURL:  oldState.member.user.displayAvatarURL()})
                     .setDescription(`✅ ${oldState.member.user} unmuted in channel ${newChannel}`)
                     .setTimestamp();
 
@@ -218,6 +228,8 @@ client.on('voiceStateUpdate', (oldState, newState) => {
         if (oldState.serverDeaf != newState.serverDeaf) {
             if (newState.serverDeaf == true) {
                 let embed = new Discord.MessageEmbed()
+                    .setAuthor({name: oldState.member.user.username + "#" +  oldState.member.user.discriminator,
+                        iconURL:  oldState.member.user.displayAvatarURL()})
                     .setDescription(`❌ ${oldState.member.user} deafed in channel ${newChannel}`)
                     .setTimestamp();
 
@@ -226,6 +238,8 @@ client.on('voiceStateUpdate', (oldState, newState) => {
 
             if (newState.serverDeaf == false) {
                 let embed = new Discord.MessageEmbed()
+                    .setAuthor({name: oldState.member.user.username + "#" +  oldState.member.user.discriminator,
+                        iconURL:  oldState.member.user.displayAvatarURL()})
                     .setDescription(`✅ ${oldState.member.user} undeafed in channel ${newChannel}`)
                     .setTimestamp();
 
