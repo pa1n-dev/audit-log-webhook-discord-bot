@@ -15,11 +15,12 @@ client.on('ready', function () {
 client.on("messageDelete", function (message) {
   if (message.content.length != 0) {
     let embed = new Discord.MessageEmbed()
-        .setAuthor(message.author.username + "#" + message.author.discriminator)
+        .setAuthor({name: message.author.username + "#" + message.author.discriminator,
+            iconURL: message.author.avatarURL()})
         .setDescription(`❌ Message deleted in ${message.channel}`)
         .addField("**Content**", message.content)
         .setTimestamp()
-        .setFooter("Message ID: " + message.id);
+        .setFooter({text: "Message ID: " + message.id});
 
     webhook.send({ embeds: [embed] }).catch(console.error);
   }
@@ -28,12 +29,13 @@ client.on("messageDelete", function (message) {
 client.on('messageUpdate', (oldMessage, newMessage) => {
     if (oldMessage.content != newMessage.content) {
         let embed = new Discord.MessageEmbed()
-            .setAuthor(newMessage.author.tag, newMessage.author.avatarURL)
+            .setAuthor({name: message.author.username + "#" + message.author.discriminator,
+                iconURL: message.author.avatarURL()})
             .setDescription(`📖 Message edited in ${oldMessage.channel}`)
             .addField("**Before**", oldMessage.content)
             .addField("**After**", newMessage.content)
             .setTimestamp()
-            .setFooter("Message ID: " + newMessage.id);
+            .setFooter({text: "Message ID: " + newMessage.id});
 
         webhook.send({ embeds: [embed] }).catch(console.error);
     }
@@ -44,6 +46,14 @@ client.on('channelCreate', (channel) => {
         .setDescription(`✅ Channel created ${channel}`)
         .addField("**Name**", channel.name, true)
         .addField("**ID**", channel.id, true)
+        .setTimestamp();
+
+    webhook.send({ embeds: [embed] }).catch(console.error);
+});
+
+client.on('channelDelete', (channel) => {
+    let embed = new Discord.MessageEmbed()
+        .setDescription(`❌ Channel **${channel.name}** deleted `)
         .setTimestamp();
 
     webhook.send({ embeds: [embed] }).catch(console.error);
@@ -61,7 +71,9 @@ client.on("roleDelete", function (role) {
 
 client.on('guildMemberAdd', (member) => {
     let embed = new Discord.MessageEmbed()
-        .setDescription(`✅ User joined ${member.user}`)
+        .setAuthor({name: member.user.username + "#" + member.user.discriminator,
+            iconURL: member.user.displayAvatarURL()})
+        .setDescription(`✅ **User joined** ${member.user}`)
         .addField("**Name**", member.user.username, true)
         .addField("**ID**", member.user.id, true)
         .setTimestamp();
@@ -71,7 +83,9 @@ client.on('guildMemberAdd', (member) => {
 
 client.on('guildMemberRemove', (member) => {
     let embed = new Discord.MessageEmbed()
-        .setDescription(`❌ User leaved ${member.user}`)
+        .setAuthor({name: member.user.username + "#" + member.user.discriminator,
+            iconURL: member.user.displayAvatarURL()})
+        .setDescription(`❌ **User leaved** ${member.user}`)
         .addField("**Name**", member.user.username, true)
         .addField("**ID**", member.user.id, true)
         .setTimestamp();
@@ -83,7 +97,7 @@ client.on('guildBanAdd', (ban) => {
     let embed = new Discord.MessageEmbed()
         .setDescription(`❌ Baned user ${ban.user}`)
         .setTimestamp()
-        .setFooter("User ID: " + ban.user.id);
+        .setFooter({text: "User ID: " + ban.user.id});
 
     webhook.send({ embeds: [embed] }).catch(console.error);
 });
@@ -92,7 +106,7 @@ client.on('guildBanRemove', (ban) => {
     let embed = new Discord.MessageEmbed()
         .setDescription(`✅ Unbaned user ${ban.user}`)
         .setTimestamp()
-        .setFooter("User ID: " + ban.user.id);
+        .setFooter({text: "User ID: " + ban.user.id});
 
     webhook.send({ embeds: [embed] }).catch(console.error);
 });
@@ -102,9 +116,22 @@ client.on("roleCreate", function (role) {
         .setDescription(`✅ Role created`)
         .addField("**Name**", role.name, true)
         .setTimestamp()
-        .setFooter("Role ID: " + role.id);
+        .setFooter({text: "Role ID: " + role.id});
 
     webhook.send({ embeds: [embed] }).catch(console.error);
+});
+
+client.on("roleUpdate", function (oldRole, newRole) {
+    if (oldRole.name != newRole.name) {
+        let embed = new Discord.MessageEmbed()
+            .setDescription(`♻️ Role name updated`)
+            .addField("**Old name**", oldRole.name, true)
+            .addField("**New name**", newRole.name, true)
+            .setTimestamp()
+            .setFooter({text: "Role ID: " + newRole.id});
+
+        webhook.send({ embeds: [embed] }).catch(console.error);
+    };
 });
 
 client.on("roleDelete", function (role) {
@@ -112,9 +139,30 @@ client.on("roleDelete", function (role) {
         .setDescription(`❌ Role deleted`)
         .addField("**Name**", role.name, true)
         .setTimestamp()
-        .setFooter("Role ID: " + role.id);
+        .setFooter({text: "Role ID: " + role.id});
 
     webhook.send({ embeds: [embed] }).catch(console.error);
+});
+
+client.on("guildMemberUpdate", (oldMember, newMember) => {
+    let oldnick = oldMember.user.username;
+    let newnick = newMember.user.username;
+    if (oldMember.nickname) {
+        oldnick = oldMember.nickname};
+    if (newMember.nickname) {
+        newnick = newMember.nickname};
+
+    if (oldnick != newnick) {
+        let embed = new Discord.MessageEmbed()
+            .setAuthor({name: newMember.user.username + "#" + newMember.user.discriminator,
+                iconURL: newMember.user.displayAvatarURL()})
+            .setDescription(`♻️ Username updated`)
+            .addField("**Old name**", oldnick, true)
+            .addField("**New name**", newnick, true)
+            .setTimestamp()
+            .setFooter({text: "User ID: " + newMember.user.id});
+        webhook.send({ embeds: [embed] }).catch(console.error);
+    };
 });
 
 client.on('voiceStateUpdate', (oldState, newState) => {
@@ -127,6 +175,8 @@ client.on('voiceStateUpdate', (oldState, newState) => {
 
     if (oldChannelName === null) {
         let embed = new Discord.MessageEmbed()
+            .setAuthor({name: oldState.member.user.username + "#" +  oldState.member.user.discriminator,
+                        iconURL:  oldState.member.user.displayAvatarURL()})
             .setDescription(`${oldState.member.user} connected to voice and joined ${newChannel}`)
             .setTimestamp();
 
@@ -134,6 +184,8 @@ client.on('voiceStateUpdate', (oldState, newState) => {
     }
     else if (newChannelName === null) {
         let embed = new Discord.MessageEmbed()
+            .setAuthor({name: oldState.member.user.username + "#" +  oldState.member.user.discriminator,
+                        iconURL:  oldState.member.user.displayAvatarURL()})
             .setDescription(`${oldState.member.user} disconnected`)
             .setTimestamp();
 
@@ -142,6 +194,8 @@ client.on('voiceStateUpdate', (oldState, newState) => {
     else {
         if (newState.channelId != oldState.channelId) {
             let embed = new Discord.MessageEmbed()
+                .setAuthor({name: oldState.member.user.username + "#" +  oldState.member.user.discriminator,
+                        iconURL:  oldState.member.user.displayAvatarURL()})
                 .setDescription(`❌ ${oldState.member.user} moved to channel ${newChannel}`)
                 .setTimestamp();
 
@@ -152,6 +206,8 @@ client.on('voiceStateUpdate', (oldState, newState) => {
         if (oldState.serverMute != newState.serverMute) {
             if (newState.serverMute == true) {
                 let embed = new Discord.MessageEmbed()
+                    .setAuthor({name: oldState.member.user.username + "#" +  oldState.member.user.discriminator,
+                        iconURL:  oldState.member.user.displayAvatarURL()})
                     .setDescription(`❌ ${oldState.member.user} muted in channel ${newChannel}`)
                     .setTimestamp();
 
@@ -160,6 +216,8 @@ client.on('voiceStateUpdate', (oldState, newState) => {
 
             if (newState.serverMute == false) {
                 let embed = new Discord.MessageEmbed()
+                    .setAuthor({name: oldState.member.user.username + "#" +  oldState.member.user.discriminator,
+                        iconURL:  oldState.member.user.displayAvatarURL()})
                     .setDescription(`✅ ${oldState.member.user} unmuted in channel ${newChannel}`)
                     .setTimestamp();
 
@@ -170,6 +228,8 @@ client.on('voiceStateUpdate', (oldState, newState) => {
         if (oldState.serverDeaf != newState.serverDeaf) {
             if (newState.serverDeaf == true) {
                 let embed = new Discord.MessageEmbed()
+                    .setAuthor({name: oldState.member.user.username + "#" +  oldState.member.user.discriminator,
+                        iconURL:  oldState.member.user.displayAvatarURL()})
                     .setDescription(`❌ ${oldState.member.user} deafed in channel ${newChannel}`)
                     .setTimestamp();
 
@@ -178,6 +238,8 @@ client.on('voiceStateUpdate', (oldState, newState) => {
 
             if (newState.serverDeaf == false) {
                 let embed = new Discord.MessageEmbed()
+                    .setAuthor({name: oldState.member.user.username + "#" +  oldState.member.user.discriminator,
+                        iconURL:  oldState.member.user.displayAvatarURL()})
                     .setDescription(`✅ ${oldState.member.user} undeafed in channel ${newChannel}`)
                     .setTimestamp();
 
