@@ -29,8 +29,8 @@ client.on("messageDelete", function (message) {
 client.on('messageUpdate', (oldMessage, newMessage) => {
     if (oldMessage.content != newMessage.content) {
         let embed = new Discord.MessageEmbed()
-            .setAuthor({name: message.author.username + "#" + message.author.discriminator,
-                iconURL: message.author.avatarURL()})
+            .setAuthor({name: oldMessage.author.username + "#" + oldMessage.author.discriminator,
+                iconURL: oldMessage.author.avatarURL()})
             .setDescription(`📖 Message edited in ${oldMessage.channel}`)
             .addField("**Before**", oldMessage.content)
             .addField("**After**", newMessage.content)
