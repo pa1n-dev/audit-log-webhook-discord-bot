@@ -59,7 +59,17 @@ client.on('channelDelete', (channel) => {
 });
 
 client.on('channelUpdate', (oldChannel, newChannel) => {
-  console.log(oldChannel)
+  if (oldChannel.name != newChannel.name) {
+    let embed = new Discord.MessageEmbed()
+      .setDescription(`📕 ${newChannel} name changed`)
+      .addField("**Before**", oldChannel.name)
+      .addField("**After**", newChannel.name)
+      .setFooter("Channel ID: " + newChannel.id)
+      .setTimestamp();
+
+    webhook.send({ embeds: [embed] }).catch(console.error);
+  }
+  
   if (oldChannel.bitrate != newChannel.bitrate) {
     let embed = new Discord.MessageEmbed()
       .setDescription(`📕 ${newChannel} bitrate changed`)
